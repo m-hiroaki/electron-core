@@ -1,4 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.Net;
+using System.Text;
+
 
 namespace src
 {
@@ -6,7 +10,25 @@ namespace src
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            try
+            {
+                HttpListener listener = new HttpListener();
+                listener.Prefixes.Add("http://localhost:10000/");
+                listener.Start();
+                while (true)
+                {
+                    HttpListenerContext context = listener.GetContext();
+                    HttpListenerResponse res = context.Response;
+                    res.StatusCode = 200;
+                    byte[] content = Encoding.UTF8.GetBytes("HELLO");
+                    res.OutputStream.Write(content, 0, content.Length);
+                    res.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
         }
     }
 }
