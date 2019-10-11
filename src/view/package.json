@@ -1,0 +1,14 @@
+{
+  "name": "elec.net",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "m-hiroaki",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^6.0.12"
+  }
+}
