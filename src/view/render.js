@@ -6,5 +6,5 @@ const remote = electron.remote;
 const { ipcRenderer } = require('electron');
 
 ipcRenderer.on('asynchronous-message', (event, msg) => {
-    document.getElementById('content').innerText = msg;
+    document.getElementById('content').innerText = JSON.stringify(msg);
 });

@@ -7,8 +7,9 @@ var BrowserWindow = electron.BrowserWindow;
 var mainWindow = null;
 
 require('http').createServer(function (request, response) {
-    request.addListener('end', function () {
-      mainWindow.webContents.send('asynchronous-message', 'Got a Request!');
+  request.addListener('data', function (chunk) {
+      const data = JSON.parse(chunk);
+      mainWindow.webContents.send('asynchronous-message', data);
       response.end();
     }).resume();
 }).listen(3000);
